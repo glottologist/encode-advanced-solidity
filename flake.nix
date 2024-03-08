@@ -33,7 +33,8 @@
         inputs.devenv.flakeModule
       ];
 
-      systems = inputs.nixpkgs.lib.systems.flakeExposed;
+      # systems = inputs.nixpkgs.lib.systems.flakeExposed;
+      systems = ["x86_64-linux"];
 
       perSystem = {
         config,
@@ -43,20 +44,10 @@
         system,
         ...
       }: let
-        inherit (jupyenv.lib.${system}) mkJupyterlabNew;
-        jupyterlab = mkJupyterlabNew ({...}: {
-          nixpkgs = inputs.nixpkgs;
-          imports = [(import ./kernels.nix)];
-        });
-        foundry = pkgs.callPackage ./nix/foundry.nix {inherit pkgs;};
-        sol2uml = pkgs.callPackage ./nix/sol2uml.nix {inherit pkgs;};
+        foundry = pkgs.callPackage ./nix/foundry.nix {inherit system pkgs;};
+        sol2uml = pkgs.callPackage ./nix/sol2uml.nix {inherit system pkgs;};
       in rec
       {
-        packages = {inherit jupyterlab;};
-        packages.default = jupyterlab;
-        apps.default.program = "${jupyterlab}/bin/jupyter-lab";
-        apps.default.type = "app";
-
         devenv.shells.default = {
           name = "Encode Bootcamp Shell";
           env.GREET = "Welcome to the Encode bootcamp shell";
@@ -74,7 +65,6 @@
             echidna
             ethabi
             foundry
-            sol2uml
           ];
           enterShell = ''
             git --version

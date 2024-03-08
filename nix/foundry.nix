@@ -1,9 +1,11 @@
-{pkgs ? import <nixpkgs> {}}: let
+{
+  pkgs ? import <nixpkgs> {},
+  system,
+}: let
   inherit (pkgs) stdenv lib;
 
-  arch = stdenv.hostPlatform.system;
   releases = import ./releases.nix;
-  srcAttrs = releases.sources.${arch};
+  srcAttrs = releases.sources.${system};
   bins = ["forge" "cast" "anvil" "chisel"];
   binsWithCompletions = ["forge" "cast" "anvil"];
 in

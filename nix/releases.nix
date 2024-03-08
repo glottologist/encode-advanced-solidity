@@ -4,8 +4,8 @@
 
   sources = {
     "x86_64-linux" = {
-      url = "https://github.com/foundry-rs/foundry/releases/download/nightly-551bcb5c84d672670e1e3fd897089e606d808774/foundry_nightly_linux_amd64.tar.gz";
-      sha256 = "0va2ksg2i18im33kca0g9gd2wq01mi18qv20gj0akwg8zz16zwji";
+      url = "https://github.com/foundry-rs/foundry/releases/download/nightly-3dfa43bf1fa030a6c76c36a12feb4f2fe623b89b/foundry_nightly_linux_amd64.tar.gz";
+      sha256 = "X/Ge3or61rsb8TkRAUuVu70rtOF7QGOPAqFcjaaW5as=";
     };
     "aarch64-linux" = {
       url = "https://github.com/foundry-rs/foundry/releases/download/nightly-551bcb5c84d672670e1e3fd897089e606d808774/foundry_nightly_linux_arm64.tar.gz";
